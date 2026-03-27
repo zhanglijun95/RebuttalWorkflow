@@ -1,0 +1,16 @@
+Thank you for your positive comments and constructive suggestions. Below we provide one-to-one responses to the weaknesses and questions.
+
+W1: The baselines are too weak to isolate whether diffusion is the key ingredient.
+A1: We agree that stronger learned baselines would strengthen the empirical case. As also raised by Reviewers gfXd and oQeb, this is an important limitation. Our current comparisons are to static heuristics because this exact setting combines sparse pre/post supervision, object-centric mask states, intent conditioning, and real warehouse data. To complement direct IoU gains, we therefore included downstream evaluations showing that FOREST-predicted states remain useful for DLO prediction and multi-stow reasoning. We will keep the claim conservative: the present paper shows strong evidence over heuristic alternatives, but not a definitive comparison against all learned predictors.
+
+W2: Generalization to unseen intents/bins/categories or distribution shift is not tested.
+A2: We agree. The current evaluation is ARMBench-specific, so we do not claim broader cross-dataset or distribution-shift generalization. We see the current contribution as establishing a practical benchmark/model in a real sparse-snapshot warehouse setting, with broader generalization as an important next step.
+
+W3: The canonical-mask prior may help too much and differs from practical pre-insertion signals.
+A3: We agree this is a real limitation and should be quantified as directly as possible. The main paper uses a ground-truth-derived canonical mask to isolate the post-stow prediction problem under an assumed contact-surface view. To estimate how much this assumption helps, we additionally tested a weaker proxy that recovers the in-bin contact-surface view from the induct-view image using SAM3D, then trains/evaluates FOREST with that synthetic condition. Performance decreases, but remains above heuristics: direct insert N-IoU/O-IoU = 0.5290/0.8443 and sweep insert = 0.4784/0.6678. We interpret this carefully: the canonical prior helps substantially, but the method is not entirely dependent on the idealized setting.
+
+Q1: Why has there been relatively little recent visual foresight work?
+A4: Our interpretation is that real manipulation systems often lack dense video supervision, while much recent robotics work has shifted toward policy learning or large multimodal models. In contrast, our setting is motivated by a practical warehouse regime where before/after snapshots are naturally available at scale, making sparse-snapshot foresight both challenging and underexplored.
+
+Q2: Why is the sweeping operation shown as a blue line rather than a rectangle?
+A5: The blue sweep annotation is intended as a schematic indicator of the sweep path/position rather than a precise swept-volume estimate. We agree that the figure could make this clearer, and we will clarify the caption/text accordingly.

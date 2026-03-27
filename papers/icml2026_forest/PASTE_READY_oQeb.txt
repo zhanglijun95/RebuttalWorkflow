@@ -1,0 +1,16 @@
+Thank you for your balanced review and positive comments on the practical problem and downstream evaluations. Below we provide one-to-one responses to each weakness and question.
+
+W1/Q1: Stronger learned baselines are missing.
+A1: We agree. As also noted by Reviewer gfXd, stronger learned comparisons would make the empirical case sharper. Our current comparisons are limited to copy-paste heuristics because the setting is unusually constrained: sparse pre/post supervision, object-centric mask states, intent conditioning, and real warehouse data. To complement direct mask-IoU evaluation, we therefore included two downstream tasks. In Table 2, FOREST reduces the extra DLO error over ground-truth masks from +0.0057 / +0.0098 with copy-paste+gravity to only +0.0016 / +0.0025. In addition, FOREST supports multi-stow rollouts over 1,581 chains. We do not claim this replaces stronger baselines, but it does provide evidence that the predicted states are useful beyond mask overlap.
+
+W2/Q2: Segmentation robustness is not thoroughly analyzed.
+A2: We agree this is a limitation. The current pipeline uses two safeguards: (i) we discard events whose post-stow instance count is not exactly pre-stow count + 1 for the single-step setting, and (ii) we audit the remaining correspondences using Claude-3.7 in a visual-question-answering consistency check over the pre/post RGB images. This is not a full quantitative robustness study, so we treat residual errors as label noise rather than claiming robustness. We will make this limitation more explicit.
+
+W3/Q3: Generalization beyond ARMBench is unclear.
+A3: We agree. All experiments in the current paper are on ARMBench, so we do not claim cross-dataset, unseen-geometry, or unseen-category generalization beyond what is naturally present in that dataset. We view the current contribution as establishing a first benchmark/model for sparse-snapshot real-world stow, with broader generalization as an important next step.
+
+W4/Q4: The formulation is single-step rather than sequential.
+A4: Correct. The training objective is single-step, and we do not claim explicit multi-step dynamics learning. We included the multi-stow experiments to test whether the learned transition can still be composed over longer horizons. Therefore, we interpret those results as evidence of useful compositionality, not as proof that the model is a fully sequential world model.
+
+W5/Q5: Physical plausibility is not explicitly evaluated.
+A5: We agree that we did not include a dedicated overlap/stability metric. Our current evidence is indirect and task-driven: improved O-IoU on rearranged items, better DLO prediction fidelity, and useful multi-stow rollout behavior. We agree that explicit physical-constraint metrics would be a valuable future evaluation axis.
