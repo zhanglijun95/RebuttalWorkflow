@@ -8,9 +8,10 @@
 
 1. Put the submitted PDF directly in this folder.
 2. Fill in `VENUE_RULES.md`.
-3. Fill in `PAPER_NOTES.md`.
+3. If you want, leave `PAPER_NOTES.md` mostly empty and I can summarize it from the PDF.
 4. Paste the raw OpenReview reviews into `REVIEWS_RAW.md`.
 5. Add approved extra results or allowed claims into `USER_CONFIRMED_EVIDENCE.md`.
+6. Put your reviewer-specific thoughts, attitudes, and unfinished experiment notes into `AUTHOR_NOTES.md`.
 
 ## Main Working Files
 
@@ -19,6 +20,7 @@
 - `PAPER_NOTES.md`
 - `REVIEWS_RAW.md`
 - `USER_CONFIRMED_EVIDENCE.md`
+- `AUTHOR_NOTES.md`
 - `ISSUE_BOARD.md`
 - `STRATEGY_PLAN.md`
 - `REBUTTAL_DRAFT_v1.md`

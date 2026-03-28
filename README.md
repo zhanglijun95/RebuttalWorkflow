@@ -33,6 +33,7 @@ Inside one paper folder, the working files are:
 - `PAPER_NOTES.md`
 - `REVIEWS_RAW.md`
 - `USER_CONFIRMED_EVIDENCE.md`
+- `AUTHOR_NOTES.md`
 - `ISSUE_BOARD.md`
 - `STRATEGY_PLAN.md`
 - `REBUTTAL_DRAFT_v1.md`
@@ -51,22 +52,23 @@ Then:
 
 1. Put the submitted PDF in `<paper_dir>/`.
 2. Fill in `<paper_dir>/VENUE_RULES.md`.
-3. Extract paper facts you are willing to use into `<paper_dir>/PAPER_NOTES.md`.
+3. If you want, leave `<paper_dir>/PAPER_NOTES.md` mostly empty and I can summarize it from the PDF.
 4. Paste the raw reviews into `<paper_dir>/REVIEWS_RAW.md`.
 5. Add approved extra results to `<paper_dir>/USER_CONFIRMED_EVIDENCE.md`.
-6. Ask Codex:
+6. Put your reviewer-specific thoughts, attitudes, and unfinished experiment notes into `<paper_dir>/AUTHOR_NOTES.md`.
+7. Ask Codex:
 
 ```text
 Use Rebuttal/WORKFLOW.md and Rebuttal/STYLE_GUIDE.md with Rebuttal/papers/icml2026_paper_02/ to generate ISSUE_BOARD.md and STRATEGY_PLAN.md. Do not draft the rebuttal yet.
 ```
 
-7. After reviewing the plan, ask Codex:
+8. After reviewing the plan, ask Codex:
 
 ```text
-Use Rebuttal/WORKFLOW.md and Rebuttal/STYLE_GUIDE.md to draft reviewer-facing rebuttal files in Rebuttal/papers/icml2026_paper_02/. Keep everything grounded to the paper, reviews, and USER_CONFIRMED_EVIDENCE.md only.
+Use Rebuttal/WORKFLOW.md and Rebuttal/STYLE_GUIDE.md to draft reviewer-facing rebuttal files in Rebuttal/papers/icml2026_paper_02/. Use AUTHOR_NOTES.md for strategy and tone, but keep factual claims grounded to the paper, reviews, and USER_CONFIRMED_EVIDENCE.md only.
 ```
 
-8. When you want the final compact version:
+9. When you want the final compact version:
 
 ```text
 Polish the Final sections / PASTE_READY files in Rebuttal/papers/icml2026_paper_02/, keep each one under the venue limit in VENUE_RULES.md, and preserve full reviewer coverage.

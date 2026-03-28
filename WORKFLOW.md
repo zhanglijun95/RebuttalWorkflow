@@ -62,6 +62,7 @@ Make sure these files exist in `<paper_dir>`:
 - `PAPER_NOTES.md`
 - `REVIEWS_RAW.md`
 - `USER_CONFIRMED_EVIDENCE.md`
+- `AUTHOR_NOTES.md`
 
 Update `REBUTTAL_STATE.md` with:
 
@@ -82,12 +83,13 @@ Tasks:
 - record the official limit and reply format in `VENUE_RULES.md`
 - extract usable paper anchors into `PAPER_NOTES.md`
 - list only approved extra evidence in `USER_CONFIRMED_EVIDENCE.md`
+- collect author-side strategy, reviewer-specific attitude, and unfinished experiment context in `AUTHOR_NOTES.md`
 - if the paper PDF is available, summarize only grounded claims/numbers from it
 
 Suggested Codex prompt:
 
 ```text
-Read <paper_dir>/VENUE_RULES.md, <paper_dir>/PAPER_NOTES.md, <paper_dir>/REVIEWS_RAW.md, and <paper_dir>/USER_CONFIRMED_EVIDENCE.md. Normalize the inputs, point out blockers, and do not draft yet.
+Read <paper_dir>/VENUE_RULES.md, <paper_dir>/PAPER_NOTES.md, <paper_dir>/REVIEWS_RAW.md, <paper_dir>/USER_CONFIRMED_EVIDENCE.md, and <paper_dir>/AUTHOR_NOTES.md. Normalize the inputs, point out blockers, and do not draft yet.
 ```
 
 ## Phase 2: Atomize Reviewer Concerns
@@ -203,7 +205,7 @@ Writing heuristics:
 Suggested Codex prompt:
 
 ```text
-Use Rebuttal/WORKFLOW.md and Rebuttal/STYLE_GUIDE.md to draft reviewer-facing rebuttal files in <paper_dir>. Keep every claim grounded to the paper, reviews, or <paper_dir>/USER_CONFIRMED_EVIDENCE.md only.
+Use Rebuttal/WORKFLOW.md and Rebuttal/STYLE_GUIDE.md to draft reviewer-facing rebuttal files in <paper_dir>. Use AUTHOR_NOTES.md for strategy and tone, but keep every factual claim grounded to the paper, reviews, or <paper_dir>/USER_CONFIRMED_EVIDENCE.md only.
 ```
 
 ## Phase 6: Human Refinement Loop

@@ -1,7 +1,7 @@
 # Venue Rules
 
 - Venue: ICML
-- Hard character limit:
+- Hard character limit: 5000
 - Response format: text-only
 - Can include markdown formatting?: no
 - Can upload revised PDF?: no

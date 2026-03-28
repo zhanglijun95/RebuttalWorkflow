@@ -142,6 +142,51 @@ Only place facts here that are safe to use in the rebuttal but are not already e
 - Do not promise:
 ```
 
+## `AUTHOR_NOTES.md`
+
+```md
+# Author Notes
+
+Use this file for strategy, reviewer-specific attitude, and unfinished ideas that should guide drafting but should not automatically be treated as rebuttal facts.
+
+## Paper-level guidance
+- Main acceptance case:
+- Main risks:
+- Tone preference:
+- Claims to push strongly:
+- Claims to handle cautiously:
+
+## Unfinished / in-progress experiments
+- Experiment:
+  - Current status:
+  - What you expect / current sense:
+  - Can it be mentioned now?: no / only if finished / yes
+  - Notes:
+
+## Reviewer-specific notes
+
+### Reviewer 1
+- My view of this review:
+- Points I agree with:
+- Points I want to clarify or push back on:
+- Tone to use:
+- Things not to say:
+
+### Reviewer 2
+- My view of this review:
+- Points I agree with:
+- Points I want to clarify or push back on:
+- Tone to use:
+- Things not to say:
+
+### Reviewer 3
+- My view of this review:
+- Points I agree with:
+- Points I want to clarify or push back on:
+- Tone to use:
+- Things not to say:
+```
+
 ## `ISSUE_BOARD.md`
 
 ```md
