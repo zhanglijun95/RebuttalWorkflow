@@ -53,6 +53,24 @@ We observe that [].
 | 1024 | [TBD] | [TBD] | [TBD] |
 | 2048 | [TBD] | [TBD] | [TBD] |
 
+## V2
+
+Only **A5** is updated below. The rest follows **V1**.
+
+**W5:** Theorem 3.1's sensitivity to its assumptions.  
+**A5:** We agree that the Gaussian and i.i.d. assumptions in Appendix B are idealized. When this assumption does not hold, the guarantee in Theorem 3.1 becomes weaker in a specific way. If different embedding dimensions have different residual scales, the same NAVQ noise level cannot smooth all dimensions equally well. The predicted Wasserstein reduction is then smaller on some dimensions and stronger on others. If the residuals are also correlated across dimensions, the dimension-wise decomposition used in the proof no longer holds exactly, so the bound becomes looser further.
+
+In practice, this means NAVQ should still help by softening hard codebook boundaries, but the size of the improvement becomes data-dependent rather than uniform across dimensions. This is also how we interpret Table 12. Increasing the noise magnitude from `0.0` to `1.0` improves validation accuracy from `89.91` to `90.77` and reduces the train-validation gap from `10.07` to `9.21`. Our view is therefore that Theorem 3.1 captures the mechanism correctly, while the actual gain under real Transformer embeddings depends on how strongly the i.i.d. assumption is violated.
+
+## V3
+
+Only **A1** is updated below. The rest follows **V1**, with **A5** following **V2**.
+
+**W1:** Concern about the accuracy degradation in generative / zero-shot settings.  
+**A1:** We agree that zero-shot transfer is the weakest part of the current NLP results. Our understanding is that the discretized codebook representation limits representation diversity and therefore makes the model more likely to learn patterns specific to the training distribution, which hurts generalization when the evaluation distribution shifts, as discussed in Appendix H.
+
+The main empirical message of the paper, however, is about low-bandwidth inference rather than transfer learning. ASTRA is designed to reduce inter-device communication aggressively while preserving useful language-model quality in the target deployment setting. For GPT2-M at `G=32`, Wikitext-103 PPL changes from `14.80` to `16.84`, which corresponds to only a `4.4%` increase in loss under `102.4x` communication compression. For Llama-3-8B, the downstream-task drop in Table 10 remains within `0.48%-1.67%` while communication is reduced by at least `51.2x`. These are the results we view as most important, because in a limited-bandwidth setting, this level of communication reduction directly translates into practical latency benefit while keeping the model useful on in-domain and downstream tasks.
+
 ## V1
 
 Thank you for the detailed and constructive review. Below we provide one-to-one responses to the raised weaknesses and questions.
@@ -60,7 +78,7 @@ Thank you for the detailed and constructive review. Below we provide one-to-one 
 **W1:** Concern about the accuracy degradation in generative / zero-shot settings.  
 **A1:** We understand the concern regarding zero-shot generation. At the same time, we would like to clarify that the overall NLP results in the paper remain strong under severe communication compression. For GPT2-M at `G=32`, Wikitext-103 PPL changes from `14.80` to `16.84`. For Llama-3-8B, the downstream-task drop in Table 10 is only `0.48%-1.67%` while communication is reduced by at least `51.2x`. These results show that ASTRA preserves practical language-model utility on in-domain and downstream tasks.
 
-The larger degradation appears mainly in zero-shot transfer. For GPT2-M at `G=32`, zero-shot PPL rises from `43.22` to `62.29`. Our understanding is that the discretized codebook representation limits representation diversity and therefore makes the model more likely to learn patterns specific to the training distribution, which hurts generalization when the evaluation distribution shifts. This point is already discussed in Appendix H. We do not want to claim that this issue is already solved in the current paper. Rather, we view it as the main future direction, while the present submission already demonstrates strong practical value for the matched and near-matched settings that motivate ASTRA.
+The larger degradation appears mainly in zero-shot transfer. For GPT2-M at `G=32`, zero-shot PPL rises from `43.22` to `62.29`. Our understanding is that the discretized codebook representation limits representation diversity and therefore makes the model more likely to learn patterns specific to the training distribution, which hurts generalization when the evaluation distribution shifts (as discussed in Appendix H). We do not want to claim that this issue is already solved in the current paper. Rather, we view it as the main future direction, while the present submission already demonstrates strong practical value for the matched and near-matched settings that motivate ASTRA.
 
 **W2 / Q3:** Comparisons to KV cache compression literature.  
 **A2:** KV-cache compression is related to ASTRA, and we agree that this literature should be discussed explicitly in the revised paper. The key distinction is that these methods mainly reduce KV-cache size for memory-limited or long-context serving, whereas ASTRA targets inter-device communication in low-bandwidth multi-device inference. For the setting studied in our paper, this difference is fundamental because the dominant bottleneck is communication time rather than cache-memory footprint.
